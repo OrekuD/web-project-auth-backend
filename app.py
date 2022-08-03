@@ -1,6 +1,7 @@
 from uuid import uuid4
 from flask import Flask, jsonify
 from flask_cors import CORS
+
 from user.models import User
 
 app = Flask(__name__, instance_path='/uploads')
@@ -9,7 +10,7 @@ app.secret_key = uuid4().hex
 
 api_version = "/api/v1"
 
-@app.route(api_version + '/')
+@app.route('/')
 def home():
     return jsonify({"msg": "home"})
   
