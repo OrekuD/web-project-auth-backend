@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import jsonify, request
 from passlib.hash import pbkdf2_sha256
 import uuid
 from resources.errorResource import ErrorResource
