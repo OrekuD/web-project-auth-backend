@@ -1,7 +1,7 @@
 from uuid import uuid4
 from flask import Flask, jsonify
-from user.models import User
 from flask_cors import CORS
+from user.models import User
 
 app = Flask(__name__, instance_path='/uploads')
 CORS(app)
