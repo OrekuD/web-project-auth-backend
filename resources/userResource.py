@@ -1,5 +1,4 @@
 import jwt
-
 class UserResource:
     def getResource(self, user):
         del user['password']
