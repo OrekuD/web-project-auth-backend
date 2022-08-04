@@ -6,7 +6,7 @@ from user.models import User
 
 app = Flask(__name__, instance_path='/uploads')
 CORS(app)
-app.secret_key = uuid4().hex
+app.config['SECRET_KEY'] = 'P80y97z9K4'
 
 api_version = "/api/v1"
 
