@@ -1,12 +1,9 @@
-from uuid import uuid4
 from flask import Flask, jsonify
 from flask_cors import CORS
-
 from user.models import User
 
-app = Flask(__name__, instance_path='/uploads')
+app = Flask(__name__)
 CORS(app)
-app.config['SECRET_KEY'] = 'P80y97z9K4'
 
 api_version = "/api/v1"
 
@@ -21,6 +18,10 @@ def signup():
 @app.route(api_version + '/user/sign-out', methods=['GET'])
 def signout():
   return User().signOut()
+
+@app.route(api_version + '/user/update', methods=['PUT'])
+def update():
+  return User().updateDetails()
 
 @app.route(api_version + '/user/sign-in', methods=['POST'])
 def login():
