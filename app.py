@@ -23,6 +23,10 @@ def signout():
 def update():
   return User().updateDetails()
 
+@app.route(api_version + '/user/change-password', methods=['PUT'])
+def changePassword():
+  return User().changePassword()
+
 @app.route(api_version + '/user/sign-in', methods=['POST'])
 def login():
   return User().signIn()

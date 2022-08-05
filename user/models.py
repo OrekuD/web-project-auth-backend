@@ -59,6 +59,18 @@ class User:
     
     return jsonify(ErrorResource().getResource(500, "User update failed")), 500
   
+  def changePassword(self):
+    user = db.users.find_one({ "_id": request.json['_id'] })
+    if not user:
+      return jsonify(ErrorResource().getResource(404, "User doesn't exist")), 404
+    
+    if pbkdf2_sha256.verify(request.json['oldPassword'], user['password']):
+      updated_user = db.users.update_one({"_id": request.json['_id']}, {'$set': {user.password: pbkdf2_sha256.encrypt(request.json['newPassword'])} })
+      if updated_user:
+        return jsonify(OkayResource().getResource("success")), 200
+    
+    return jsonify(ErrorResource().getResource(500, "Password change failed")), 500
+    
   
   def signIn(self):
     user = db.users.find_one({
